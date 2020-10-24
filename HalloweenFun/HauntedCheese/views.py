@@ -27,6 +27,18 @@ class Index(View):
         pass
     
 
+class Spook(View):
+
+    context_dict = {}
+
+    # handle get requests
+    def get(self, request):
+        return render(request, 'HauntedCheese/spook.html', self.context_dict)
+
+    # handle post requests
+    def post(self, request):
+        pass
+
 class ViewList(View):
 
     context_dict = {}
