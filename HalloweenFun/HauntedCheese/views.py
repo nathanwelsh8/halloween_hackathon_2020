@@ -77,8 +77,7 @@ class AddList(View):
                  )[0]
         new_todo.save()
 
-        print(request.POST)
-        return self.get(request)
+        return redirect(reverse('HauntedCheese:index'))
 
 class Login(View):
 
