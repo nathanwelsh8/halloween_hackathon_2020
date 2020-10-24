@@ -16,7 +16,8 @@
 
     <body>
 		{% if not registered %}
-			<div class="login-dark wrapper" id="particles-js">
+			<div id="particles-js"></div>
+			<div class="login-dark wrapper">
 				<form id="user_form" method="post" action="{% url 'HauntedCheese:register' %}" enctype="multipart/form-data">
 					<div class="illustration">
 						<a href="{% url 'HauntedCheese:index' %}">
