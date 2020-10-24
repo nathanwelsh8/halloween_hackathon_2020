@@ -8,8 +8,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.urls import reverse 
 
+<<<<<<< Updated upstream
 from HauntedCheese.models import Todo, TodoIterator
 from HauntedCheese.forms import UserForm 
+=======
+from HauntedCheese.models import Todo
+from HauntedCheese.forms import UserForm, AddItem
+>>>>>>> Stashed changes
 
 
 # Create your views here.
@@ -33,8 +38,23 @@ class ViewList(View):
 
     def get(self, request):
         pass
+<<<<<<< Updated upstream
     def post(self, request):
         pass
+=======
+
+class AddList(View):
+
+    context_dict = {}
+
+    def get(self, request):
+        if(not request.user.is_authenticated):
+            return redirect(reverse('HauntedCheese:login'))
+        
+        return render(request, 'HauntedCheese/addList.html', context= self.context_dict)
+    def post(self, request):
+        new_item = AddItem(request.POST)
+>>>>>>> Stashed changes
 
 class Login(View):
 

@@ -14,3 +14,17 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'password',)
 
+<<<<<<< Updated upstream
+=======
+
+class AddItem(forms.ModelForm):
+
+    title = forms.CharField(max_length=100, widget = forms.TextInput(attrs={'placeholder':"List Item Name", 'class':'form-control'}))
+    description = forms.CharField(max_length=512, widget=forms.Textarea(attrs={'placeholder':'What spooky stuff do you need to do?', 'class':'form-control'}))  
+    start = forms.DateTimeField(input_formats=["%d %b %Y %H:%M:%S %Z"], widget=forms.DateTimeInput(attrs={'class':'form-control'}))
+    due = forms.DateTimeField(input_formats=["%d %b %Y %H:%M:%S %Z"], widget=forms.DateTimeInput(attrs={'class':'form-control'}))
+
+    class Meta:
+        model = Todo
+        fields = ('title', 'description','start','due')
+>>>>>>> Stashed changes
