@@ -52,7 +52,8 @@ class Login(View):
 
     context_dict = {}
     def get(self, request, **kwargs):
-        pass
+        self.context_dict["user_form"] = UserForm()
+        return render(request, "HauntedCheese/login.html", self.context_dict)
 
     def post(self,request):
         username = request.POST.get('username')
@@ -69,7 +70,6 @@ class Login(View):
                 return redirect(reverse('HauntedCheese:index'))
             else: 
                 return self.get(request, **{"login_error_msg":"Your Spatula account has been disabled."})
-                
         else:
             return self.get(request, **{"login_error_msg":"Invalid login details supplied."})
 
