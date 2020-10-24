@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 
-#from spatulaApp.models import Recipe, Category, RecipeImage, UserProfile, Rating, UserImage
+from HauntedCheese.models import Todo, TodoIterator
 from django.urls import reverse 
 
 from django.views import View
@@ -14,12 +14,21 @@ from django.views import View
 
 class Index(View):
 
+    context_dict = {}
+
+    # handle get requests
+    def get(self, request):
+        return render(request, 'HauntedCheese/index.html', self.context_dict)
+
+    # handle post requests
     def post(self, request):
         pass
-    def get(self, request):
-        return render(request, 'HauntedCheese/index.html')
+    
 
 class ViewList(View):
+
+    context_dict = {}
+
     def get(self, request):
         pass
     def post(self, request):
