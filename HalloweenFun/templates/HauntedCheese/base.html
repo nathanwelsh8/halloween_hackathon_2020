@@ -15,8 +15,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     </head>
     <body>
-        <iframe src="{% static 'silence.mp3' %}" type="audio/mp3" allow="autoplaY" id="audio" style="display:none"></iframe>
-        <audio autoplay loop>
+        <iframe src="{% static 'silence.mp3' %}" type="audio/mp3" allow="autoplay" id="audio" style="display:none"></iframe>
+        <audio autoplay loop volume="0.5">
             <source src="{% static 'static_music.mp3' %}" type="audio/mp3"/>
             Your browser does not support autoplay!
         </audio>
