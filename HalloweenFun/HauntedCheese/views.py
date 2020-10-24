@@ -60,14 +60,13 @@ class Login(View):
 
         # If they clicked the register button they are redirected to register page.
         if 'register' in request.POST:
-            return redirect(reverse('spatulaApp:register'))
+            return redirect(reverse('HauntedCheese:register'))
 
         user = authenticate(username=str(username.lower()), password=str(password))
-        
         if user: 
             if user.is_active:
                 login(request, user)
-                return redirect(reverse('spatulaApp:index'))
+                return redirect(reverse('HauntedCheese:index'))
             else: 
                 return self.get(request, **{"login_error_msg":"Your Spatula account has been disabled."})
                 
@@ -76,13 +75,18 @@ class Login(View):
 
 class Register(View):
     context_dict = {}
+    registered = False
 
     def get(self,request, **kwargs):
+
+        self.context_dict["registered"] = self.registered
+        self.context_dict["user_form"] = UserForm()
         return render(request, 'HauntedCheese/register.html', self.context_dict)
 
     def post(self,request):
-         # Attempt to grab information from the raw form information.
-        # Note that we make use of both UserForm
+        # called when user presses submit
+
+        # Attempt to grab information from the raw form information.
         user_form = UserForm(request.POST)
 
         if user_form.is_valid():
@@ -96,12 +100,12 @@ class Register(View):
            
             # Update our variable to indicate that the template
             # registration was successful.
-            registered = True
-            
+            self.registered = True
+
             user = authenticate(username=user.username.lower(), password=user_form['password'].data)
             if user:
                 login(request, user)
-                
+
             return redirect(reverse('HauntedCheese:index'))
         else:
             # Invalid form or forms - mistakes or something else?
