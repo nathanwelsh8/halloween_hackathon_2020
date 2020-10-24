@@ -66,7 +66,7 @@ class Register(View):
     context_dict = {}
 
     def get(self,request, **kwargs):
-        pass
+        return render(request, 'HauntedCheese/register.html', self.context_dict)
 
     def post(self,request):
          # Attempt to grab information from the raw form information.
@@ -90,8 +90,8 @@ class Register(View):
             if user:
                 login(request, user)
                 
-            return redirect(reverse('spatulaApp:index'))
+            return redirect(reverse('HauntedCheese:index'))
         else:
             # Invalid form or forms - mistakes or something else?
             # Print problems to the terminal.
-            return self.get(request,**{"errors":user_form.errors})
+            return self.get(request,**{"formErrors":user_form.errors})

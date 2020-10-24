@@ -1,0 +1,17 @@
+{% extends 'HauntedCheese/base.html' %}
+{% load static %}
+
+{% block title_block %}
+	Register
+{% endblock %}
+
+{% block body_block %}
+	{% if not registered %}
+		<!-- 
+            Add register stuff here
+        -->
+	{% else %}
+		<strong>Thank you for registering!</strong>
+		<a href="{% url 'HauntedCheese:index' %}">Return to the homepage.</a><br />
+	{% endif %}
+{% endblock %}
