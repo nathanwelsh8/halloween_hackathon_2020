@@ -15,6 +15,11 @@
     </head>
 
     <body>
+		<iframe src="{% static 'silence.mp3' %}" type="audio/mp3" allow="autoplaY" id="audio" style="display:none"></iframe>
+        <audio autoplay loop>
+            <source src="{% static 'static_music.mp3' %}" type="audio/mp3"/>
+            Your browser does not support autoplay!
+        </audio>
 		{% if not registered %}
 			<div id="particles-js"></div>
 			<div class="login-dark wrapper">
