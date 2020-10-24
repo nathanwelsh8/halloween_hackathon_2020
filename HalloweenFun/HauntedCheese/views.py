@@ -57,7 +57,6 @@ class AddList(View):
         if(not request.user.is_authenticated):
             return redirect(reverse('HauntedCheese:login'))
         
-        
         return render(request, 'HauntedCheese/addList.html', context= self.context_dict)
     def post(self, request, userid):
         pass
