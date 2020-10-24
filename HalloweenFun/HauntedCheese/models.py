@@ -18,7 +18,7 @@ class UserProfile(models.Model):
 
 # Todo List Model
 class Todo(models.Model):
-    user = models.ForeignKey(UserProfile,default=None, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,default=None, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     created_time = models.DateTimeField(default=timezone.now)

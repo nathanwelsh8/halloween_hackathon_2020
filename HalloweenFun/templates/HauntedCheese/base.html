@@ -40,7 +40,7 @@
                     {% endif %}
                     {% if user.is_authenticated %}
                     <li class="nav-item">  
-                        {% comment %}<a class="nav-link" href="{% url 'HauntedCheese' user.id %}">Edit List</a>{% endcomment %}
+                        <a class="nav-link" href="{% url 'HauntedCheese:addList' %}">Edit List</a>
                     </li>
                     {% endif %}
                 </ul>

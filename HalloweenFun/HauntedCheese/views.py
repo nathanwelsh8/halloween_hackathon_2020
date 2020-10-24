@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 from django.urls import reverse 
 
 from HauntedCheese.models import Todo
-from HauntedCheese.forms import UserForm 
+from HauntedCheese.forms import UserForm
 
 def getTodoLists(request):
     return Todo.objects.filter(Todo__user=request.user)
@@ -49,13 +49,29 @@ class AddList(View):
 
     context_dict = {}
 
-    def get(self, request , userid):
+    def get(self, request):
         if(not request.user.is_authenticated):
             return redirect(reverse('HauntedCheese:login'))
         
+       
         return render(request, 'HauntedCheese/addList.html', context= self.context_dict)
-    def post(self, request, userid):
-        pass
+    def post(self, request):
+        print("POST request")
+        
+        user = User.objects.get(id = request.user.id)
+
+        new_todo = Todo.objects.get_or_create(
+                user=user,
+                title=request.POST.get("todo_label"),
+                description = request.POST.get("todo_description"),
+                created_time = request.POST.get("start"),
+                due_time = request.POST.get("end"),
+                status = 0
+                 )[0]
+        new_todo.save()
+
+        print(request.POST)
+        return self.get(request)
 
 class Login(View):
 
