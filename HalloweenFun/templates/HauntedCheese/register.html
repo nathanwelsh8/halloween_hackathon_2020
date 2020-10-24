@@ -6,30 +6,40 @@
 {% endblock %}
 
 {% block body_block %}
-	{% if not registered %}
-	<form  id="user_form" method="post" action="{% url 'HauntedCheese:register' %}" enctype="multipart/form-data">
-		{% csrf_token %}
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="form-group">
-					<label class="form-label">
-						<span style="color: maroon;"><h2>Sell your soul</h2></span>
-					</label>
-				</div>
-				<div class="form-group">
-					{{user_form.username}}
-				</div>
-				<div class="form-group">
-					{{user_form.password}}
-				</div>
-				<div class="form-group">
-					<button class="form-control btn btn-dark" id = "button" type="submit" name="submit"><span style="color: maroon;">Confirm Soul Transaction</span></button>
-				</div>
-			</div>
+	<div class="row ">
+		<div class="col-2">
+			<img class="img-brand" width="100%"  height="100%" style='position:absolute;top:0;left:0; width: 100%; height: 100%;'' src="{% static "images/brokenHearts.gif" %}">
 		</div>
-	</form>
-	{% else %}
-		<strong>You belong to me now!</strong>
-		<a href="{% url 'HauntedCheese:index' %}">Return to the homepage.</a><br />
-	{% endif %}
+		<div class="col-9 col-md-8">
+			{% if not registered %}
+			<form  id="user_form" method="post" action="{% url 'HauntedCheese:register' %}" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label class="form-label">
+								<span style="color: maroon;"><h2>Sell your soul</h2></span>
+							</label>
+						</div>
+						<div class="form-group">
+							{{user_form.username}}
+						</div>
+						<div class="form-group">
+							{{user_form.password}}
+						</div>
+						<div class="form-group">
+							<button class="form-control btn btn-dark" id = "button" type="submit" name="submit"><span style="color: maroon;">Confirm Soul Transaction</span></button>
+						</div>
+					</div>
+				</div>
+			</form>
+			{% else %}
+				<strong>You belong to me now!</strong>
+				<a href="{% url 'HauntedCheese:index' %}">Return to the homepage.</a><br />
+			{% endif %}
+		</div>
+		<div class="col-2">
+			<img class="img-brand" width="100%"  height="100%" style='position:absolute;top:0;left:0; width: 100%; height: 100%;'' src="{% static "images/brokenHearts.gif" %}">
+		</div>
+	</div>
 {% endblock %}

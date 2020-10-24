@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.urls import reverse 
 
-from HauntedCheese.models import Todo, TodoIterator
+from HauntedCheese.models import Todo
 from HauntedCheese.forms import UserForm 
 
 
@@ -17,9 +17,12 @@ from HauntedCheese.forms import UserForm
 class Index(View):
 
     context_dict = {}
-
     # handle get requests
+
     def get(self, request):
+        if(not request.user.is_authenticated):
+            return redirect(reverse('HauntedCheese:login'))
+
         return render(request, 'HauntedCheese/index.html', self.context_dict)
 
     # handle post requests
@@ -39,21 +42,27 @@ class Spook(View):
     def post(self, request):
         pass
 
-class ViewList(View):
+
+class AddList(View):
 
     context_dict = {}
 
-    def get(self, request):
+    def get(self, request , userid):
+        if(not request.user.is_authenticated):
+            return redirect(reverse('HauntedCheese:login'))
+        
+        
+        return render(request, 'HauntedCheese/addList.html', context= self.context_dict)
+    def post(self, request, userid):
         pass
-    def post(self, request):
-        pass
+
 
 class Login(View):
 
     context_dict = {}
     def get(self, request, **kwargs):
-        self.context_dict["user_form"] = UserForm()
-        return render(request, "HauntedCheese/login.html", self.context_dict)
+        if(request.user.is_authenticated):
+            return redirect(reverse('HauntedCheese:index'))
 
     def post(self,request):
         username = request.POST.get('username')
@@ -69,7 +78,6 @@ class Login(View):
                 login(request, user)
                 return redirect(reverse('HauntedCheese:index'))
             else: 
-                return self.get(request, **{"login_error_msg":"Your Spatula account has been disabled."})
         else:
             return self.get(request, **{"login_error_msg":"Invalid login details supplied."})
 
@@ -78,6 +86,9 @@ class Register(View):
     registered = False
 
     def get(self,request, **kwargs):
+
+        if(request.user.is_authenticated):
+            return redirect(reverse('HauntedCheese:index'))
 
         self.context_dict["registered"] = self.registered
         self.context_dict["user_form"] = UserForm()
