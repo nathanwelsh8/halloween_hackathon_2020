@@ -11,6 +11,12 @@ from django.urls import reverse
 from HauntedCheese.models import Todo
 from HauntedCheese.forms import UserForm 
 
+def getTodoLists(user):
+    return Todo.objects.filter(Todo__user=request.user)
+
+def getStatusOccurences(usersTodoLists):
+    # returns a tuple with the number of pending and complete to do list items in the form: (PENDING, DONE)
+    return (usersTodoLists.objects.filter(usersTodoLists__status=0).count(), usersTodoLists.objects.filter(usersTodoLists__status=1).count())
 
 # Create your views here.
 
