@@ -141,3 +141,16 @@ class Register(View):
             # Invalid form or forms - mistakes or something else?
             # Print problems to the terminal.
             return self.get(request,**{"formErrors":user_form.errors})
+
+class Logout(View): 
+
+    def get(self,request):
+        if(request.user.is_authenticated):
+            logout(request)
+
+        
+        # Take the user back to login page.
+        return redirect(reverse('HauntedCheese:login'))
+    
+    def post(self,request):
+        return redirect(reverse('HauntedCheese:index'))

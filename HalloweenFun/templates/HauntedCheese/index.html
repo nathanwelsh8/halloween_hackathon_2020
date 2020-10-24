@@ -31,11 +31,15 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <form method = "POST" action="{% url 'HauntedCheese:index' %}">
-                                    {% csrf_token %}
-                                    <input type="hidden" value="{{todo.id}}" name="todoid">
-                                    <button type="submit" class="btn btn-dark">Mark Complete</button>
-                                </form>
+                                {% if todo.status == 0 %}
+                                    <form method = "POST" action="{% url 'HauntedCheese:index' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{todo.id}}" name="todoid">
+                                        <button type="submit" class="btn btn-dark">Mark Complete</button>
+                                    </form>
+                                {% else %}
+                                    Complete
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
