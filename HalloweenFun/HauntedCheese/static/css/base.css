@@ -112,4 +112,7 @@ body {
     transform: translateY(1px);
   }
   
-  
+  audio, embed {
+    position: absolute;
+    z-index: -9999;
+}
