@@ -12,7 +12,9 @@ from HauntedCheese.models import Todo
 from HauntedCheese.forms import UserForm
 
 def getTodoLists(request):
-    return Todo.objects.filter(Todo__user=request.user)
+    x = Todo.objects.filter(user=User.objects.get(id=request.user.id))
+    print("found:",x)
+    return x
 
 def getStatusOccurences(usersTodoLists):
     # returns a tuple with the number of pending and complete to do list items in the form: (PENDING, DONE)
@@ -26,6 +28,8 @@ class Index(View):
 
     # handle get requests
     def get(self, request):
+
+        self.context_dict['todo_list'] = getTodoLists(request)
         return render(request, 'HauntedCheese/index.html', self.context_dict)
 
     # handle post requests

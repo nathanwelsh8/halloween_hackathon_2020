@@ -2,9 +2,32 @@
 {% load static %}
 
 {% block title_block %}
-Test
+    Main Spook
 {% endblock %}
 
 {% block body_block %}
-Test
+    {% if user.is_authenticated %}
+    <div class="row">
+        <div class="col-lg-12">
+            <table id="" style="color: aliceblue;">
+                <thead>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th>Due</th>
+                    <th>Status</th>
+                </thead>
+                <tbody>
+                    {% for todo in todo_list %}
+                        <tr>
+                            <td>{{todo.title}}</td>
+                            <td>{{todo.description}}</td>
+                            <td>{{ todo.due_time|date:"d M Y H:i" }}</td>
+                            <td>{{todo.status}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
