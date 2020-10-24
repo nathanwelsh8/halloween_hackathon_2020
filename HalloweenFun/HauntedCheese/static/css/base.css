@@ -116,3 +116,9 @@ body {
     position: absolute;
     z-index: -9999;
 }
+
+.table-hover tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f1f1f1 !important;
+  transition: background-color .3s ease-in-out;
+}
