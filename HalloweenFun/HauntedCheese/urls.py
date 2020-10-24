@@ -6,7 +6,7 @@ app_name = "HauntedCheese"
 
 urlpatterns = [
     path('', views.Index.as_view(), name='index'),
-    path('addList/<slug:userid>',views.AddList.as_view(), name='addList'),
+    path('addList/',views.AddList.as_view(), name='addList'),
     path('login/', views.Login.as_view(), name='login'),
     path('register/', views.Register.as_view(), name='register'),
     path('spook/', views.Spook.as_view(), name='spook'),

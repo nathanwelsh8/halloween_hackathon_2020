@@ -6,17 +6,40 @@
 {% endblock %}
 
 {% block body_block %}
-<form method="post" action="{% url 'AddList' %}">
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="form-group">
-                <label class="form-label">
-                    TODO Label
-                </label>
-                {{item_form.title}}
+    <form method="post" action="{% url 'HauntedCheese:addList' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="form-label" style="color: brown;">
+                        TODO Label
+                    </label>
+                    <input type="text" class="form-control" name='todo_label' required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="color: brown;">
+                        TODO Description
+                    </label>
+                    <textarea class="form-control" name='todo_description' required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="color: brown;">
+                        Start Date
+                    </label>
+                    <input type="datetime-local" class="form-control" name='start' required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="color: brown;">
+                        Due Date
+                    </label>
+                    <input type="datetime-local" class="form-control" name='end' required>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-dark" type="submit">Add Item</button>
+                </div>
             </div>
+            <div class="col-lg-3"></div>
         </div>
-    </div>
-</form>
+    </form>
 {% endblock %}
