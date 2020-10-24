@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.urls import reverse 
 
-from HauntedCheese.models import Todo, TodoIterator
+from HauntedCheese.models import Todo
 from HauntedCheese.forms import UserForm 
 
 
