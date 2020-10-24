@@ -1,0 +1,21 @@
+#particles-js {
+    background: #1f1f1f;
+    height: 100vh;
+}
+
+.navbar-custom {
+    background: transparent;
+}
+
+.navbar-custom a {
+    color: #ffffff;
+}
+
+.navbar-custom a:hover {
+    color: #c1c1c1;
+}
+
+.img-brand {
+    width: 64px;
+    height: 64px;
+}
