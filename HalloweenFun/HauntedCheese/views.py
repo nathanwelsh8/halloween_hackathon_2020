@@ -34,7 +34,10 @@ class Index(View):
 
     # handle post requests
     def post(self, request):
-        pass
+        todo = Todo.objects.get(id = request.POST.get("todoid"))
+        todo.status = 1
+        todo.save()
+        return self.get(request)
     
 
 class Spook(View):

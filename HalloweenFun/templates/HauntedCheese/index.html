@@ -15,6 +15,7 @@
                     <th>Description</th>
                     <th>Due</th>
                     <th>Status</th>
+                    <th>Mark Complete</th>
                 </thead>
                 <tbody>
                     {% for todo in todo_list %}
@@ -22,7 +23,20 @@
                             <td>{{todo.title}}</td>
                             <td>{{todo.description}}</td>
                             <td>{{ todo.due_time|date:"d M Y H:i" }}</td>
-                            <td>{{todo.status}}</td>
+                            <td>
+                                {% if todo.status == 0  %}
+                                    Pending
+                                {% else %}
+                                    Complete
+                                {% endif %}
+                            </td>
+                            <td>
+                                <form method = "POST" action="{% url 'HauntedCheese:index' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{todo.id}}" name="todoid">
+                                    <button type="submit" class="btn btn-dark">Mark Complete</button>
+                                </form>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
