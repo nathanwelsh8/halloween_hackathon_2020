@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render
 
   
@@ -17,3 +18,9 @@ class Index(View):
         pass
     def get(self, request):
         return render(request, 'HauntedCheese/index.html')
+
+class ViewList(View):
+    def get(self, request):
+        pass
+    def post(self, request):
+        pass
