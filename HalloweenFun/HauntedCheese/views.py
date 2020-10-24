@@ -1,6 +1,7 @@
 from django.http import request
 from django.shortcuts import render
 from django.views import View
+from django.utils import timezone
 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -30,6 +31,14 @@ class Index(View):
     def get(self, request):
 
         self.context_dict['todo_list'] = getTodoLists(request)
+
+        current_time = timezone.now()
+        for item in self.context_dict['todo_list']:
+            if item.due_time > current_time and item.status == 0:
+                self.context_dict['failure'] = True
+            else:
+                self.context_dict['failure'] = False
+
         return render(request, 'HauntedCheese/index.html', self.context_dict)
 
     # handle post requests
