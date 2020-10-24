@@ -17,12 +17,9 @@ from HauntedCheese.forms import UserForm
 class Index(View):
 
     context_dict = {}
+
     # handle get requests
-
     def get(self, request):
-        if(not request.user.is_authenticated):
-            return redirect(reverse('HauntedCheese:login'))
-
         return render(request, 'HauntedCheese/index.html', self.context_dict)
 
     # handle post requests
@@ -42,27 +39,21 @@ class Spook(View):
     def post(self, request):
         pass
 
-
-class AddList(View):
+class ViewList(View):
 
     context_dict = {}
 
-    def get(self, request , userid):
-        if(not request.user.is_authenticated):
-            return redirect(reverse('HauntedCheese:login'))
-        
-        
-        return render(request, 'HauntedCheese/addList.html', context= self.context_dict)
-    def post(self, request, userid):
+    def get(self, request):
         pass
-
+    def post(self, request):
+        pass
 
 class Login(View):
 
     context_dict = {}
     def get(self, request, **kwargs):
-        if(request.user.is_authenticated):
-            return redirect(reverse('HauntedCheese:index'))
+        self.context_dict["user_form"] = UserForm()
+        return render(request, "HauntedCheese/login.html", self.context_dict)
 
     def post(self,request):
         username = request.POST.get('username')
@@ -77,7 +68,6 @@ class Login(View):
             if user.is_active:
                 login(request, user)
                 return redirect(reverse('HauntedCheese:index'))
-            else: 
         else:
             return self.get(request, **{"login_error_msg":"Invalid login details supplied."})
 
@@ -86,9 +76,6 @@ class Register(View):
     registered = False
 
     def get(self,request, **kwargs):
-
-        if(request.user.is_authenticated):
-            return redirect(reverse('HauntedCheese:index'))
 
         self.context_dict["registered"] = self.registered
         self.context_dict["user_form"] = UserForm()
