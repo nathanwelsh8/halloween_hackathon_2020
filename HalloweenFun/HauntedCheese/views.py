@@ -60,13 +60,13 @@ class Login(View):
 
         # If they clicked the register button they are redirected to register page.
         if 'register' in request.POST:
-            return redirect(reverse('spatulaApp:register'))
+            return redirect(reverse('HauntedCheese:register'))
 
         user = authenticate(username=str(username.lower()), password=str(password))
         if user: 
             if user.is_active:
                 login(request, user)
-                return redirect(reverse('spatulaApp:index'))
+                return redirect(reverse('HauntedCheese:index'))
             else: 
                 return self.get(request, **{"login_error_msg":"Your Spatula account has been disabled."})
                 
