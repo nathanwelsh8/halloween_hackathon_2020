@@ -15,9 +15,11 @@
     </head>
 
     <body>
+        {% if not user.is_authenticated %}
         <div id="particles-js"></div>
             <div class="login-dark wrapper">
                 <form id="user_form" method="post" action="{% url 'HauntedCheese:login' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="illustration">
                         <a href="{% url 'HauntedCheese:index' %}">
                             <img width="75px" height="75px" src="{% static 'images/brand.gif' %}"/>
@@ -35,6 +37,10 @@
                     <a class="redirect" href="{% url 'HauntedCheese:register' %}">Not registered?</a>
                 </form>
             </div>
+        {% else %}
+			<strong>You belong to me now!</strong>
+			<a href="{% url 'HauntedCheese:index' %}">Return to the homepage.</a><br />
+		{% endif %}
         <script src="{% static 'js/particles.js' %}"></script>
         <script src="{% static 'js/app.js' %}"></script>
     </body>
