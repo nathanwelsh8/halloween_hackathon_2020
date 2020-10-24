@@ -1,7 +1,7 @@
 
 from django import forms
 from django.contrib.auth.models import User
-from HauntedCheese.models import Todo, TodoIterator
+from HauntedCheese.models import Todo
 
 class UserForm(forms.ModelForm):
     username = forms.CharField(max_length=150,
