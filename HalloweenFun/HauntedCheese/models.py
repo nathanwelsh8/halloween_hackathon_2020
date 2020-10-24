@@ -1,7 +1,5 @@
 from django.db import models
 from django.utils import timezone
-import datetime
-
 from django.contrib.auth.models import User
 
 PENDING = 0
@@ -19,12 +17,14 @@ class UserProfile(models.Model):
         return self.user.username
 
 class TodoIterator(models.Model):
+    user = models.ForeignKey(User,default=None, on_delete=models.CASCADE)
     list_names = models.CharField(max_length=255)
 
 # Todo List Model
 class Todo(models.Model):
-    list_title = models.ForeignKey(TodoIterator, on_delete=models.CASCADE)
-    list_content = models.TextField(blank=True)
+    list_iterator = models.ForeignKey(TodoIterator, on_delete=models.CASCADE, default=None)
+    list_title = models.CharField(max_length=255)
+    list_description = models.TextField(blank=True)
     created_time = models.DateTimeField(default=timezone.now)
     due_time = models.DateTimeField(default=timezone.now)
     status = models.PositiveSmallIntegerField(choices=COMPLETE_STATUS)
