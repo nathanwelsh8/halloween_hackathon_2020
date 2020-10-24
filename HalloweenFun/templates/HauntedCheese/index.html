@@ -45,5 +45,8 @@
                 </tbody>
             </table>
         </div>
+        {% if failure %}
+            <script>$(document).ready(function(){window.location.replace("{% url 'HauntedCheese:spook' %}");});</script>
+        {% endif %}
     {% endif %}
 {% endblock %}
