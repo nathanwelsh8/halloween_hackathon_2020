@@ -23,12 +23,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                    {% if not user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'HauntedCheese:register' %}">Register</a>
                     </li>
+                    {% endif %}
+                    {% if not user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Page 2</a>
+                        <a class="nav-link" href="#">Login</a>
                     </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">  
+                        <a class="nav-link" href="{% url 'HauntedCheese' user.id %}">Edit List</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
