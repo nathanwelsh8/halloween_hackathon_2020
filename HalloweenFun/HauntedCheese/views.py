@@ -49,9 +49,12 @@ class AddList(View):
 
     context_dict = {}
 
-    def get(self, request):
-        pass
-    def post(self, request):
+    def get(self, request , userid):
+        if(not request.user.is_authenticated):
+            return redirect(reverse('HauntedCheese:login'))
+        
+        return render(request, 'HauntedCheese/addList.html', context= self.context_dict)
+    def post(self, request, userid):
         pass
 
 class Login(View):
