@@ -19,6 +19,7 @@
 			<div id="particles-js"></div>
 			<div class="login-dark wrapper">
 				<form id="user_form" method="post" action="{% url 'HauntedCheese:register' %}" enctype="multipart/form-data">
+					{% csrf_token %}
 					<div class="illustration">
 						<a href="{% url 'HauntedCheese:index' %}">
 							<img width="75px" height="75px" src="{% static 'images/brand.gif' %}"/>
@@ -33,6 +34,7 @@
 					<div class="form-group">
 						<button class="btn btn-primary btn-block" id="button" type="submit" name="submit">Confirm Soul Transaction</button>
 					</div>
+					<a class="redirect" href="{% url 'HauntedCheese:login' %}">Already sold your soul?</a>
 				</form>
 			</div>
 		{% else %}
