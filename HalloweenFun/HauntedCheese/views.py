@@ -11,7 +11,7 @@ from django.urls import reverse
 from HauntedCheese.models import Todo
 from HauntedCheese.forms import UserForm 
 
-def getTodoLists(user):
+def getTodoLists(request):
     return Todo.objects.filter(Todo__user=request.user)
 
 def getStatusOccurences(usersTodoLists):
@@ -45,7 +45,7 @@ class Spook(View):
     def post(self, request):
         pass
 
-class ViewList(View):
+class AddList(View):
 
     context_dict = {}
 
