@@ -6,11 +6,17 @@
 {% endblock %}
 
 {% block body_block %}
-
-<div class="row">
-    <div class="col-lg-12">
-        
+<form method="post" action="{% url 'AddList' %}">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="form-label">
+                    TODO Label
+                </label>
+                {{item_form.title}}
+            </div>
+        </div>
     </div>
-</div>
-
+</form>
 {% endblock %}

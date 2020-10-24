@@ -19,6 +19,7 @@
 			<div id="particles-js"></div>
 			<div class="login-dark wrapper">
 				<form id="user_form" method="post" action="{% url 'HauntedCheese:register' %}" enctype="multipart/form-data">
+					{% csrf_token %}
 					<div class="illustration">
 						<a href="{% url 'HauntedCheese:index' %}">
 							<img width="75px" height="75px" src="{% static 'images/brand.gif' %}"/>

@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 from django.urls import reverse 
 
 from HauntedCheese.models import Todo
-from HauntedCheese.forms import UserForm 
+from HauntedCheese.forms import UserForm, AddItem
 
 def getTodoLists(request):
     return Todo.objects.filter(Todo__user=request.user)
@@ -53,6 +53,7 @@ class AddList(View):
         if(not request.user.is_authenticated):
             return redirect(reverse('HauntedCheese:login'))
         
+        self.context_dict['item_form'] = AddItem()
         return render(request, 'HauntedCheese/addList.html', context= self.context_dict)
     def post(self, request, userid):
         pass
