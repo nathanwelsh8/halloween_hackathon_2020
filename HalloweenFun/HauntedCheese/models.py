@@ -16,13 +16,9 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-class TodoIterator(models.Model):
-    user = models.ForeignKey(User,default=None, on_delete=models.CASCADE)
-    list_names = models.CharField(max_length=255)
-
 # Todo List Model
 class Todo(models.Model):
-    list_iterator = models.ForeignKey(TodoIterator, on_delete=models.CASCADE, default=None)
+    user = models.ForeignKey(User,default=None, on_delete=models.CASCADE)
     list_title = models.CharField(max_length=255)
     list_description = models.TextField(blank=True)
     created_time = models.DateTimeField(default=timezone.now)
