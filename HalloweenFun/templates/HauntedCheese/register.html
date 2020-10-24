@@ -7,11 +7,20 @@
 
 {% block body_block %}
 	{% if not registered %}
-		<!-- 
-            Add register stuff here
-        -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="form-group">
+					<label class="form-label">
+						<span style="color: maroon;">Sell your soul</span>
+					</label>
+				</div>
+				<div class="form-group">
+
+				</div>
+			</div>
+		</div>
 	{% else %}
-		<strong>Thank you for registering!</strong>
+		<strong>You belong to me now!</strong>
 		<a href="{% url 'HauntedCheese:index' %}">Return to the homepage.</a><br />
 	{% endif %}
 {% endblock %}
