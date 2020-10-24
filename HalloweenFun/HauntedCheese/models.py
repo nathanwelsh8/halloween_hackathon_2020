@@ -1,13 +1,20 @@
 from django.db import models
-from datetime import timezone
+from django.utils import timezone
+from django.contrib.auth.models import User
 
 PENDING = 0
 DONE = 1
 
 COMPLETE_STATUS = (
     (PENDING, 'Pending'),
-    (DONE, 'Done')
+    (DONE, 'Done'),
 )
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
 
 class TodoIterator(models.Model):
     list_names = models.CharField(max_length=255)
@@ -21,7 +28,7 @@ class Todo(models.Model):
     status = models.PositiveSmallIntegerField(choices=COMPLETE_STATUS)
 
     class Meta:
-        ordering = ["-created"]
+        ordering = ["-created_time"]
     
     def __str__(self):
         return self.list_title
